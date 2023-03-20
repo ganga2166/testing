@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: web-deployment
+
+  labels:
+
+    app: web
+
+spec:
+
+  replicas: 3
+
+  selector:
+
+    matchLabels:
+
+      app: web
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: web
+
+    spec:
+
+      containers:
+
+      - name: web
+
+        image: ganga2166/web1:latest
+
+        ports:
+
+        - containerPort: 80
+
+
+
+

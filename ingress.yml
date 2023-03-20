@@ -1,0 +1,28 @@
+#install ingress-controller by using 
+#kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.6.4/deploy/static/provider/aws/deploy.yaml
+
+
+# create ingress for service
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - www.gangaprasad.live
+    secretName: nginx-tls-default
+  rules:
+  - host: www.gangaprasad.live
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-deployment
+            port:
+              number: 80
